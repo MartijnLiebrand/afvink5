@@ -15,32 +15,39 @@ package afvinkopdracht_5;
 
 public class Translator {
 
-
-/** 
- * Declaratie en initialisatie van arrays
-*  Met opzet niet de meest effectieve datastructuur gekozen
-*  maar wel een inzichtelijke datastructuur
-*/
+    /** 
+    *  Declaratie en initialisatie van arrays
+    *  Met opzet niet de meest effectieve datastructuur gekozen
+    *  maar wel een inzichtelijke datastructuur
+    */
     
-  static final String[] ONE = {"A", "R", "N", "D", "C", "Q", "E", "G", "H", "I", "L", "K", "M", "F", "P", "S", "T", "W", "Y", "V"};
-  static final String[] THREE = {"ALA", "ARG", "ASN", "ASP", "CYS", "GLN", "GLU", "GLY",
-    "HIS", "ILE", "LEU", "LYS", "MET", "PHE", "PRO", "SER",
-    "THR", "TRP", "TYR", "VAL"
-  };
+    static final String[] ONE   = {"A", "R", "N", "D", "C", "Q", "E", "G", "H", "I", "L", "K", "M", "F", "P", "S", "T", "W", "Y", "V"};
+    static final String[] THREE = { "ALA", "ARG", "ASN", "ASP", "CYS", "GLN", "GLU", "GLY",
+                                    "HIS", "ILE", "LEU", "LYS", "MET", "PHE", "PRO", "SER",
+                                    "THR", "TRP", "TYR", "VAL"
+                                   };
 
-  public static String one2three(String symbol) throws NotAnAA {
-    String threeCode = "";
-    for (int i = 0; i < ONE.length; i++) {
-      if (ONE[i].equals(symbol)) {
-        threeCode = THREE[i];
-      }
-     
+    public static String one2three(String symbol) throws NotAnAA {
+        
+        String threeCode = "";
+        
+        for (int i = 0; i < ONE.length; i++) {
+            
+            if (ONE[i].equals(symbol)) {
+                
+                threeCode = THREE[i];
+                
+            }
+        }
+
+        if (threeCode.equals("")) {
+            
+            throw new NotAnAA("Dit is een niet bestaand aminozuur: "+symbol);
+        }
+
+        return threeCode;
     }
- if (threeCode.equals("")) {
-        throw new NotAnAA("Dit is een niet bestaand aminozuur: "+symbol);
-      }
-    return threeCode;
-  }
+
 }
 
 
@@ -56,17 +63,21 @@ public class Translator {
 
 class NotAnAA extends Exception {
 
-/**
-* Overschrijven van de constructor van Exception
-*/
-  public NotAnAA() {
-  /** 
-  * call van de constructor van de super class: Exception
-  */
-    super();
-  }
+    /**
+    * Overschrijven van de constructor van Exception
+    */
+    public NotAnAA() {
+        /** 
+        * call van de constructor van de super class: Exception
+        */
+        super();
+        
+    }
 
-  public NotAnAA(String err) {
-    super(err);
-  }
+    public NotAnAA(String err) {
+        
+        super(err);
+        
+    }
+    
 }
